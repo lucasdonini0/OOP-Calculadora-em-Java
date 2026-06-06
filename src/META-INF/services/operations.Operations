@@ -3,3 +3,5 @@ operations.Subtract
 operations.Multiply
 operations.Division
 operations.Exponentiation
+operations.Percentage
+operations.Modulus
