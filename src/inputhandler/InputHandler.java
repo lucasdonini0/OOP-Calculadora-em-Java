@@ -1,33 +1,25 @@
 package inputhandler;
 import operations.*;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Scanner;
 
 public class InputHandler {
-    private final Scanner scanner = new Scanner(System.in).useLocale(Locale.US); // Encapsulation: Só a própria classe pode usar o objeto
-            // final pq não vou criar outro scanner
+    private final Scanner scanner = new Scanner(System.in).useLocale(Locale.US);
+    private final Map<Integer, Operations> registry; // é só map não linkedhashmap pq só preciso usar o .get aqui e qualquer map faz isso
+
+    public InputHandler(Map<Integer, Operations> registry) { // recebe o mapa que o OperationRegistry montou
+        this.registry = registry;
+    }
 
     public Operations getOperation(){
 
         int option = scanner.nextInt();
+        if (option == 0) System.exit(0);
 
-        switch (option){ // aqui só pega o input, o menu quem printa vai ser a Main por enquanto
-            case 0:
-                System.exit(0);
-            case 1:
-                return new Add();
-            case 2:
-                return new Subtract();
-            case 3:
-                return new Multiply();
-            case 4:
-                return new Division();
-            case 5:
-                return new Exponentiation();
-            default:
-                throw new IllegalArgumentException("Argumento inválido! Tente novamente");
-        }
-
+        Operations op = registry.get(option);
+        if (op == null) throw new IllegalArgumentException("Opção não encontrada."); // todo: dar um jeito de fazer essa porra mandar printar o menu dnv
+        return op;
     }
 
     public double getNumber(String text){

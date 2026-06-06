@@ -1,0 +1,5 @@
+operations.Add
+operations.Subtract
+operations.Multiply
+operations.Division
+operations.Exponentiation

@@ -5,4 +5,10 @@ public class Exponentiation implements Operations{
     public double execute (double x, double y){
         return Math.pow(x, y);
     }
+    @Override public String getLabel (){
+        return "Exponenciação";
+    }
+    @Override public int getOrder (){
+        return 5;
+    }
 }
